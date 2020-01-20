@@ -1,0 +1,36 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+int main() {
+    int n,x;
+    //n is number of vertices
+    cin>>n;
+    int edges[5][5];//edge[i][j] is 1 if there exist an edge between i and j else 0.
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cin>>edges[i][j];
+        }
+    }
+    int visited[5]={0};
+    //x is the starting vertex
+    cin>>x;
+    //intially make starting vertex as visited
+    visited[x]=1;
+    queue<int> q;
+    //push the starting vertex
+    q.push(x);
+    while(!q.empty()){
+           int f = q.front();
+           cout<<f;
+           q.pop();
+        for(int i=0;i<n;i++){ 
+            if(edges[f][i]==1 && visited[i]==0)   
+            {
+                visited[i]=1;
+                q.push(i);
+
+            }
+        }
+    }
+    return 0;
+}
