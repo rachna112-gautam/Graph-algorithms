@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+ int e, v, f, s;
+
+void print(int **edges, int n, int sv, int* visited){
+    cout<<sv;
+    visited[sv] = 1;
+    for(int i=0;i<n;i++)
+    {   if(edges[sv][i] == 1){
+        if(visited[i])
+        continue;
+        print(edges, n, i, visited);
+    }
+    }
+}
+int main(){
+   
+    cin >> v >> e;
+    int **edges = new int*[v];
+    for(int i = 0; i<v;i++)
+    {
+        edges[i] = new int[v];
+        for(int j = 0; j<v;j++)
+        edges[i][j] = 0;
+    }
+    for(int i = 0; i < e; i++){
+        cin >> f >> s;
+        edges[f][s] = edges[s][f] = 1;
+    }
+    int visited[v] = {0};
+
+    print(edges, v, 0, visited);
+return 0;
+}
